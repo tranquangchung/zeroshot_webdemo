@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Audio Synthesis Gallery</title>
+  <!-- Bulma CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+  />
+  <!-- Optional Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Hero Header -->
+  <section class="hero is-info">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">Audio Synthesis Gallery</h1>
+        <h2 class="subtitle">Zero-Shot TTS Demo</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Version 1 (DAC) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-4">Version 1 (DAC prompt)</h2>
+      <table class="table is-fullwidth is-striped is-hoverable">
+        <colgroup>
+          <col style="width: 40%;" />
+          <col style="width: 30%;" />
+          <col style="width: 30%;" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Text</th>
+            <th>Audio Prompt</th>
+            <th>Audio Synthesis</th>
+          </tr>
+        </thead>
+        <tbody id="table-dac">
+          <!-- Populated by app.js -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Version 2 (MEL) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-4">Version 2 (MEL prompt)</h2>
+      <table class="table is-fullwidth is-striped is-hoverable">
+        <colgroup>
+          <col style="width: 40%;" />
+          <col style="width: 30%;" />
+          <col style="width: 30%;" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Text</th>
+            <th>Audio Prompt</th>
+            <th>Audio Synthesis</th>
+          </tr>
+        </thead>
+        <tbody id="table-mel">
+          <!-- Populated by app.js -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

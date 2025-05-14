@@ -1,0 +1,25 @@
+/* Base font */
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* Ensure long text wraps */
+.table td {
+  white-space: normal;
+  vertical-align: top;
+}
+
+/* Let audio expand to fill its column */
+.table audio {
+  width: 100%;
+  max-width: none;
+}
+
+/* Mobile tweak: make tables scrollable */
+@media screen and (max-width: 768px) {
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
