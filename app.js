@@ -5,7 +5,6 @@ function escapeHTML(str) {
   return p.innerHTML;
 }
 
-// Fetch & render one table
 async function loadTable(listPath, tableBodyId) {
   try {
     const res = await fetch(listPath);
@@ -15,10 +14,11 @@ async function loadTable(listPath, tableBodyId) {
     const tbody = document.getElementById(tableBodyId);
     tbody.innerHTML = ''; // clear
 
-    lines.forEach(line => {
+    lines.forEach((line, index) => {
       const [txt, input, synth] = line.split('|');
       const tr = document.createElement('tr');
       tr.innerHTML = `
+        <td>${index + 1}</td> <!-- Index column -->
         <td>${escapeHTML(txt)}</td>
         <td><audio controls src="${input}"></audio></td>
         <td><audio controls src="${synth}"></audio></td>
@@ -28,7 +28,7 @@ async function loadTable(listPath, tableBodyId) {
   } catch (err) {
     console.error(err);
     document.getElementById(tableBodyId).innerHTML = `
-      <tr><td colspan="3" class="has-text-danger">
+      <tr><td colspan="4" class="has-text-danger">
         Error loading data.
       </td></tr>
     `;
@@ -39,4 +39,5 @@ async function loadTable(listPath, tableBodyId) {
 document.addEventListener('DOMContentLoaded', () => {
   loadTable('output_DAC/synthesis_list.txt', 'table-dac');
   loadTable('output_MEL/synthesis_list.txt', 'table-mel');
+  loadTable('output_Mel_60k/synthesis_list.txt', 'table-mel-60k');
 });

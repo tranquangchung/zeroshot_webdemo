@@ -21,7 +21,7 @@
   <section class="hero is-info">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title">Audio Synthesis Gallery</h1>
+        <h1 class="title">Audio Synthesis</h1>
         <h2 class="subtitle">Zero-Shot TTS Demo</h2>
       </div>
     </div>
@@ -31,17 +31,19 @@
   <!-- Version 1 (DAC) -->
   <section class="section">
     <div class="container">
-      <h2 class="title is-4">Version 1 (DAC prompt)</h2>
+      <h2 class="title is-4">Version 1 (DAC prompt / 100K iteration)</h2>
       <table class="table is-fullwidth is-striped is-hoverable">
         <colgroup>
-          <col style="width: 40%;" />
-          <col style="width: 30%;" />
-          <col style="width: 30%;" />
+          <col style="width: 10%;" />
+          <col style="width: 35%;" />
+          <col style="width: 25%;" />
+          <col style="width: 25%;" />
         </colgroup>
         <thead>
           <tr>
+            <th>Index</th> <!-- Added index column -->
             <th>Text</th>
-            <th>Audio Prompt</th>
+            <th>Audio Prompt (Unseen)</th>
             <th>Audio Synthesis</th>
           </tr>
         </thead>
@@ -55,21 +57,49 @@
   <!-- Version 2 (MEL) -->
   <section class="section">
     <div class="container">
-      <h2 class="title is-4">Version 2 (MEL prompt)</h2>
+      <h2 class="title is-4">Version 2 (MEL prompt / 35K iteration)</h2>
       <table class="table is-fullwidth is-striped is-hoverable">
         <colgroup>
-          <col style="width: 40%;" />
-          <col style="width: 30%;" />
-          <col style="width: 30%;" />
+          <col style="width: 10%;" />
+          <col style="width: 35%;" />
+          <col style="width: 25%;" />
+          <col style="width: 25%;" />
         </colgroup>
         <thead>
           <tr>
+            <th>Index</th> <!-- Added index column -->
             <th>Text</th>
-            <th>Audio Prompt</th>
+            <th>Audio Prompt (Unseen)</th>
             <th>Audio Synthesis</th>
           </tr>
         </thead>
         <tbody id="table-mel">
+          <!-- Populated by app.js -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Version 2 (MEL) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-4">Version 2.1 (MEL prompt / 60K iteration)</h2>
+      <table class="table is-fullwidth is-striped is-hoverable">
+        <colgroup>
+          <col style="width: 10%;" />
+          <col style="width: 35%;" />
+          <col style="width: 25%;" />
+          <col style="width: 25%;" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Index</th> <!-- Added index column -->
+            <th>Text</th>
+            <th>Audio Prompt (Unseen)</th>
+            <th>Audio Synthesis</th>
+          </tr>
+        </thead>
+        <tbody id="table-mel-60k">
           <!-- Populated by app.js -->
         </tbody>
       </table>
