@@ -38,6 +38,5 @@ async function loadTable(listPath, tableBodyId) {
 // On DOM ready, load both versions
 document.addEventListener('DOMContentLoaded', () => {
   loadTable('output_DAC/synthesis_list.txt', 'table-dac');
-  loadTable('output_MEL/synthesis_list.txt', 'table-mel');
-  loadTable('output_Mel_60k/synthesis_list.txt', 'table-mel-60k');
+  loadTable('output_Mel_100k/synthesis_list.txt', 'table-mel-100k');
 });
