@@ -39,5 +39,5 @@ async function loadTable(listPath, tableBodyId) {
 document.addEventListener('DOMContentLoaded', () => {
   loadTable('output_DAC/synthesis_list.txt', 'table-dac');
   loadTable('output_Mel_100k/synthesis_list.txt', 'table-mel-100k');
-  loadTable('output_SPK_90k/synthesis_list.txt', 'table-wavlm-90k');
+  loadTable('output_SPK_100k/synthesis_list.txt', 'table-wavlm-100k');
 });
