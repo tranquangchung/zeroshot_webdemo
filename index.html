@@ -27,79 +27,30 @@
     </div>
   </section>
 
-
-  <!-- Version 1 (DAC) -->
+  <!-- Audio Synthesis Table -->
   <section class="section">
     <div class="container">
-      <h2 class="title is-4">Version 1 (DAC prompt / 100K iteration)</h2>
+      <h2 class="title is-4">Audio Synthesis Comparisons</h2>
       <table class="table is-fullwidth is-striped is-hoverable">
         <colgroup>
           <col style="width: 10%;" />
-          <col style="width: 35%;" />
           <col style="width: 25%;" />
-          <col style="width: 25%;" />
+          <col style="width: 20%;" />
+          <col style="width: 15%;" />
+          <col style="width: 15%;" />
+          <col style="width: 15%;" />
         </colgroup>
         <thead>
           <tr>
-            <th>Index</th> <!-- Added index column -->
+            <th>Index</th>
             <th>Text</th>
             <th>Audio Prompt (Unseen)</th>
-            <th>Audio Synthesis</th>
+            <th>Audio Synthesis (DAC)</th>
+            <th>Audio Synthesis (MEL)</th>
+            <th>Audio Synthesis (WavLM)</th>
           </tr>
         </thead>
         <tbody id="table-dac">
-          <!-- Populated by app.js -->
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-    <!-- Version 2 (MEL) -->
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-4">Version 2 (MEL prompt / 100K iteration)</h2>
-      <table class="table is-fullwidth is-striped is-hoverable">
-        <colgroup>
-          <col style="width: 10%;" />
-          <col style="width: 35%;" />
-          <col style="width: 25%;" />
-          <col style="width: 25%;" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th>Index</th> <!-- Added index column -->
-            <th>Text</th>
-            <th>Audio Prompt (Unseen)</th>
-            <th>Audio Synthesis</th>
-          </tr>
-        </thead>
-        <tbody id="table-mel-100k">
-          <!-- Populated by app.js -->
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-    <!-- Version 3 (Spk WavLM) -->
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-4">Version 3 (Spk WavLM prompt / 100k iteration)</h2>
-      <table class="table is-fullwidth is-striped is-hoverable">
-        <colgroup>
-          <col style="width: 10%;" />
-          <col style="width: 35%;" />
-          <col style="width: 25%;" />
-          <col style="width: 25%;" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th>Index</th> <!-- Added index column -->
-            <th>Text</th>
-            <th>Audio Prompt (Unseen)</th>
-            <th>Audio Synthesis</th>
-          </tr>
-        </thead>
-        <tbody id="table-wavlm-100k">
           <!-- Populated by app.js -->
         </tbody>
       </table>
