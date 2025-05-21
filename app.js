@@ -5,87 +5,77 @@ function escapeHTML(str) {
   return p.innerHTML;
 }
 
-async function loadTable(listPathDAC, listPathMel, listPathWavLM, tableBodyId) {
-  try {
-    const resDAC = await fetch(listPathDAC);
-    const resMel = await fetch(listPathMel);
-    const resWavLM = await fetch(listPathWavLM);
-
-    if (!resDAC.ok || !resMel.ok || !resWavLM.ok) {
-      throw new Error('Failed to load one or more files');
-    }
-
-    const textDAC = await resDAC.text();
-    const textMel = await resMel.text();
-    const textWavLM = await resWavLM.text();
-
-    const linesDAC = textDAC.trim().split(/\r?\n/);
-    const linesMel = textMel.trim().split(/\r?\n/);
-    const linesWavLM = textWavLM.trim().split(/\r?\n/);
-
-    // Create an object to group entries by their audio prompt
-    const groupedData = {};
-
-    // Function to group lines by audio prompt
-    // Utility to extract filename from a path
-    function extractFilename(filePath) {
-      return filePath.split('/').pop();
-    }
-
-    const groupData = (lines, model) => {
-      lines.forEach((line, index) => {
-        const [txt, input, synth] = line.split('|');
-
-        // Extract the filenames from the input and synthesis paths
-        const inputFilename = extractFilename(input);
-
-        // Group data by the audio prompt (input filename)
-        if (!groupedData[inputFilename]) {
-          groupedData[inputFilename] = { txt, input: input, synths: { [model]: synth }, index };
-        } else {
-          groupedData[inputFilename].synths[model] = synth;
-        }
-      });
-    };
-
-
-    // Group data for each model
-    groupData(linesDAC, 'DAC');
-    groupData(linesMel, 'MEL');
-    groupData(linesWavLM, 'WavLM');
-
-    // Populate table
-    const tbody = document.getElementById(tableBodyId);
-    tbody.innerHTML = ''; // clear
-
-    Object.values(groupedData).forEach((data, index) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${data.index + 1}</td>
-        <td>${escapeHTML(data.txt)}</td>
-        <td><audio controls src="${data.input}"></audio></td>
-        <td><audio controls src="${data.synths['DAC']}"></audio></td>
-        <td><audio controls src="${data.synths['MEL']}"></audio></td>
-        <td><audio controls src="${data.synths['WavLM']}"></audio></td>
-      `;
-      tbody.appendChild(tr);
-    });
-  } catch (err) {
-    console.error(err);
-    document.getElementById(tableBodyId).innerHTML = `
-      <tr><td colspan="6" class="has-text-danger">
-        Error loading data.
-      </td></tr>
-    `;
-  }
+// Utility to extract filename from a path
+function extractFilename(filePath) {
+  return filePath.split('/').pop();
 }
 
-// On DOM ready, load all versions and combine data into one table
+// Main loader function
+async function loadTable(models, tableBodyId) {
+  const groupedData = {};
+
+  // Fetch and group data per model
+  for (const { name, path } of models) {
+    try {
+      const res = await fetch(path);
+      if (!res.ok) throw new Error(`Failed to fetch ${name}`);
+      const text = await res.text();
+      const lines = text.trim().split(/\r?\n/);
+
+      lines.forEach((line, idx) => {
+        const [txt, input, synth] = line.split('|');
+        const inputFilename = extractFilename(input);
+
+        if (!groupedData[inputFilename]) {
+          groupedData[inputFilename] = { txt, input, synths: {}, index: idx };
+        }
+        groupedData[inputFilename].synths[name] = synth;
+      });
+    } catch (err) {
+      console.error(`Error processing model ${name}:`, err);
+    }
+  }
+
+  // Populate the table
+  const tbody = document.getElementById(tableBodyId);
+  tbody.innerHTML = ''; // Clear existing
+
+  const modelNames = models.map(m => m.name);
+  const headerRow = document.querySelector(`#${tableBodyId}`).parentElement.querySelector('thead tr');
+
+  // Dynamically update header
+  while (headerRow.children.length > 3) headerRow.removeChild(headerRow.lastChild); // Keep first 3
+  modelNames.forEach(name => {
+    const th = document.createElement('th');
+    th.textContent = `Audio Synthesis (${name})`;
+    headerRow.appendChild(th);
+  });
+
+  Object.values(groupedData).forEach((data, i) => {
+    const tr = document.createElement('tr');
+    let rowHTML = `
+      <td>${i + 1}</td>
+      <td>${escapeHTML(data.txt)}</td>
+      <td><audio controls src="${data.input}"></audio></td>
+    `;
+    modelNames.forEach(name => {
+      const synthSrc = data.synths[name] || '';
+      rowHTML += `<td>${synthSrc ? `<audio controls src="${synthSrc}"></audio>` : '-'}</td>`;
+    });
+    tr.innerHTML = rowHTML;
+    tbody.appendChild(tr);
+  });
+}
+
+// On DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  loadTable(
-    'output_DAC/synthesis_list.txt',
-    'output_Mel_100k/synthesis_list.txt',
-    'output_SPK_100k/synthesis_list.txt',
-    'table-dac' // You can use the same table for all versions now
-  );
+  const models = [
+    { name: 'DAC', path: 'output_DAC_100KV2/synthesis_list.txt' },
+    { name: 'MEL', path: 'output_Mel_100kV2/synthesis_list.txt' },
+    { name: 'WavLM', path: 'output_SPK_100k_V2/synthesis_list.txt' },
+    { name: 'WavLM/Matching', path: 'output_SPK_Matching_80k/synthesis_list.txt' },
+    // Add more here as needed
+  ];
+
+  loadTable(models, 'table-dac');
 });
