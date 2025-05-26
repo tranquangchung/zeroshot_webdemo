@@ -73,7 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'DAC', path: 'output_DAC_100KV2/synthesis_list.txt' },
     { name: 'MEL', path: 'output_Mel_100kV2/synthesis_list.txt' },
     { name: 'WavLM', path: 'output_SPK_100k_V2/synthesis_list.txt' },
-    { name: 'WavLM/Matching', path: 'output_SPK_Matching_80k/synthesis_list.txt' },
+    { name: 'WavLM/WavLM_MatchingSPK', path: 'output_SPK_Matching_80k/synthesis_list.txt' },
+    { name: 'WavLM/MEL_MatchingSPK', path: 'output_Mel_Half_Trimp_180kV2/synthesis_list.txt' },
     // Add more here as needed
   ];
 
