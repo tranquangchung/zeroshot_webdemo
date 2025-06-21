@@ -71,8 +71,9 @@ async function loadTable(models, tableBodyId) {
 document.addEventListener('DOMContentLoaded', () => {
   const models = [
     { name: 'MEL_Dac', path: 'output_Mel_100kV2/synthesis_list.txt' },
-    { name: 'Mel_Mimi_Avg', path: 'ZeroShot_MimiCodec_Ave_37k/synthesis_list.txt' },
-    { name: 'Mel_Mimi_370k', path: 'ZeroShot_MimiCodec_370k/synthesis_list.txt' },
+    { name: 'Mel_LibrisHeavy_315', path: 'ZeroShot_MimiCodec_LibrisHeavy_315k/synthesis_list.txt' },
+    { name: 'Mel_LibrisHeavy_160', path: 'ZeroShot_MimiCodec_LibrisHeavy_160k/synthesis_list.txt' },
+    { name: 'Mel_LibrisHeavy_160_Prompt', path: 'ZeroShot_MimiCodec_prompt_160K/synthesis_list.txt' },
     // Add more here as needed
   ];
 
