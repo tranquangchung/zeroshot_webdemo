@@ -70,8 +70,8 @@ async function loadTable(models, tableBodyId) {
 // On DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   const models = [
-    { name: 'MEL_Dac', path: 'output_Mel_100kV2/synthesis_list.txt' },
-    { name: 'TitanNet_Mimi_360k', path: 'ZeroShot_MimiCodec_arcface_TitaNet_g360000/synthesis_list.txt' },
+    { name: 'TitanNet_Mimi_500k', path: 'ZeroShot_MimiCodec_arcface_TitaNet_g500000/synthesis_list.txt' },
+    { name: 'TitanNet_Mimi_700k', path: 'ZeroShot_MimiCodec_arcface_TitaNet_g700000/synthesis_list.txt' },
     // Add more here as needed
   ];
 
