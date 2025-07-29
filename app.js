@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const models = [
     { name: 'TitanNet_Mimi_700K', path: 'ZeroShot_MimiCodec_arcface_TitaNet_g700000/synthesis_list.txt' },
     { name: 'TitanNet_Mimi_FlanT5_500K', path: 'ZeroShot_MimiCodec_arcface_TitaNet_FlanT5_g500000/synthesis_list.txt' },
-    { name: 'TitanNet_Mimi_DelayPattern', path: 'ZeroShot_MimiCodec_arcface_TitaNet_DelayPattern/synthesis_list.txt' },
+    { name: 'TitanNet_Mimi_DelayPattern_500K', path: 'ZeroShot_MimiCodec_arcface_TitaNet_DelayPattern_500k/synthesis_list.txt' },
     // Add more here as needed
   ];
 
